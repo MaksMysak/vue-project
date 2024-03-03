@@ -1,39 +1,3 @@
-<script setup>
-  import { ref } from 'vue';
-  import { collection, addDoc } from 'firebase/firestore';
-  import db from '../../firebase';
-  
-  const formData = ref({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    rating: null,
-    review: '',
-  });
-  
-  const clearForm = () => {
-    formData.value.firstName = '';
-    formData.value.lastName = '';
-    formData.value.email = '';
-    formData.value.phone = '';
-    formData.value.rating = null;
-    formData.value.review = '';
-  };
-
-  const submitForm = async () => {
-    try {
-        const collectionRef = collection(db, 'message');
-        console.log(formData);
-        await addDoc(collectionRef, formData.value);
-        console.log('Data added successfully!');
-      } catch (error) {
-        console.error('Error adding data: ', error);
-      }
-  };
-  </script>
-
-
 <template>
   <form class="bg-white	rounded-md p-8">
     <div class="space-y-12">
@@ -103,6 +67,32 @@
     </div>
   </form>
 </template>
+
+<script setup>
+  import { ref } from 'vue';
+  import { collection, addDoc } from 'firebase/firestore';
+  import db from '../../firebase';
+  
+  const formData = ref({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    rating: '',
+    review: '',
+  });
+  
+  const submitForm = async () => {
+    try {console.log(formData);
+        const collectionRef = collection(db, 'message');
+        console.log(formData);
+        await addDoc(collectionRef, formData.value);
+        console.log('Data added successfully!');
+      } catch (error) {
+        console.error('Error adding data: ', error);
+      }
+  };
+  </script>
   
 <style scoped>
   .read-the-docs {
