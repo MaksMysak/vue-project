@@ -61,7 +61,7 @@
     </div>
 
     <div class="mt-6 flex items-center justify-end gap-x-6">
-      <button v-on:click="submitForm" class="py-2 px-4 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
+      <button @click.prevent="submitForm"  class="py-2 px-4 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
         Send Feedback
       </button>
     </div>
@@ -83,11 +83,11 @@
   });
   
   const submitForm = async () => {
-    try {console.log(formData);
+  try {console.log(formData);
         const collectionRef = collection(db, 'message');
-        console.log(formData);
+console.log(formData);
         await addDoc(collectionRef, formData.value);
-        console.log('Data added successfully!');
+console.log('Data added successfully!');
       } catch (error) {
         console.error('Error adding data: ', error);
       }
